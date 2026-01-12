@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terengganu | East Coast Malaysia</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --blue:#1e88a8;
+  --green:#43a047;
+  --bg:#f3f9f8;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:#333;
+  scroll-behavior:smooth;
+  margin:0;
+}
+
+/* Transparent Navbar */
+.navbar{
+  background: transparent !important;
+}
+.navbar a{
+  color:white!important;
+}
+
+/* Hero Video Section */
+.hero{
+  position: relative;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero video{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+.hero .container{
+  position: relative;
+  z-index: 1;
+  padding: 0 20px;
+}
+
+/* Title Animation */
+.hero h1{
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(100%);
+  animation: slideInRight 2s forwards;
+}
+
+@keyframes slideInRight {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+section{
+  padding: 80px 0;
+}
+
+/* Footer */
+footer{
+  background:linear-gradient(90deg,var(--green),var(--blue));
+  color:white;
+  text-align:center;
+  padding:25px 0;
+}
+
+/* ===== Film Section ===== */
+.film-section {
+  background: linear-gradient(90deg,var(--green),var(--blue));
+  padding: 50px 0;
+}
+
+.film-section h2 {
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  margin-bottom: 40px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 4rem; /* Increased text size */
+}
+
+.film-row-wrapper {
+  overflow: hidden;
+  margin-bottom: 40px;
+  position: relative;
+  width: 100%;
+}
+
+.film-row {
+  display: flex;
+}
+
+.film-card {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 180px;
+  background: #000; /* film frame */
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  margin-right: 20px;
+}
+
+/* Film perforations */
+.film-card::before,
+.film-card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: repeating-linear-gradient(
+    to right,
+    #fff 0 4px,
+    transparent 4px 12px
+  );
+  z-index: 2;
+}
+
+.film-card::before { top: 0; }
+.film-card::after { bottom: 0; }
+
+/* Image inside frame */
+.film-card img {
+  width: 100%;
+  height: calc(100% - 20px);
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+  margin-top: 10px;
+}
+
+/* Continuous scrolling */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.scroll-left {
+  display: flex;
+  width: calc((300px + 20px) * 12);
+  animation: scroll-left 40s linear infinite;
+}
+
+.scroll-right {
+  display: flex;
+  width: calc((300px + 20px) * 12);
+  animation: scroll-right 40s linear infinite;
+}
+/* ===== CONTACT SECTION ===== */
+.contact-section{
+  background: linear-gradient(90deg, var(--green), var(--blue));
+  padding: 80px 0;
+}
+
+.contact-box{
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.contact-box h2{
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.contact-box input,
+.contact-box textarea{
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: 'Poppins', sans-serif;
+}
+
+.contact-box textarea{
+  resize: none;
+}
+
+.contact-box button{
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(90deg, var(--green), var(--blue));
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.contact-box button:hover{
+  opacity: 0.9;
+}
+
+/* Back Button */
+.back-button {
+  display: block;
+  width: 200px;
+  margin: 30px auto 0;
+  padding: 12px 25px;
+  text-align: center;
+  background: white;
+  color: var(--green);
+  font-weight: 600;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: var(--green);
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">Terengganu</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="main-attractions.html">Main Attraction</a></li>
+        <li class="nav-item"><a class="nav-link" href="traditional-food.html">Food</a></li>
+        <li class="nav-item"><a class="nav-link" href="culture.html">Culture</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Video Section -->
+<section class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="terengganu-bg.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+  <div class="container">
+    <h1>EXPLORE TERENGGANU</h1>
+    <p>Terengganu is a beautiful state located on the east coast of Peninsular Malaysia, known for its pristine beaches, islands, and rich Malay culture. It boasts a blend of natural beauty, historical heritage, and modern attractions.</p>
+  </div>
+</section>
+
+<!-- Film Section -->
+<section class="film-section">
+  <div class="container">
+    <h2>Gallery</h2>
+
+    <!-- First Row: moving left -->
+    <div class="film-row-wrapper">
+      <div class="film-row scroll-left">
+        <div class="film-card"><img src="film1.jpg" alt="Film 1"></div>
+        <div class="film-card"><img src="film2.jpg" alt="Film 2"></div>
+        <div class="film-card"><img src="film3.jpg" alt="Film 3"></div>
+        <div class="film-card"><img src="film4.jpg" alt="Film 4"></div>
+        <div class="film-card"><img src="film5.jpg" alt="Film 5"></div>
+        <div class="film-card"><img src="film6.jpg" alt="Film 6"></div>
+        <!-- Duplicate for smooth scroll -->
+        <div class="film-card"><img src="film1.jpg" alt="Film 1"></div>
+        <div class="film-card"><img src="film2.jpg" alt="Film 2"></div>
+        <div class="film-card"><img src="film3.jpg" alt="Film 3"></div>
+        <div class="film-card"><img src="film4.jpg" alt="Film 4"></div>
+        <div class="film-card"><img src="film5.jpg" alt="Film 5"></div>
+        <div class="film-card"><img src="film6.jpg" alt="Film 6"></div>
+      </div>
+    </div>
+
+    <!-- Second Row: moving right -->
+    <div class="film-row-wrapper">
+      <div class="film-row scroll-right">
+        <div class="film-card"><img src="film7.jpg" alt="Film 7"></div>
+        <div class="film-card"><img src="film8.jpg" alt="Film 8"></div>
+        <div class="film-card"><img src="film9.jpg" alt="Film 9"></div>
+        <div class="film-card"><img src="film10.jpg" alt="Film 10"></div>
+        <div class="film-card"><img src="film11.jpg" alt="Film 11"></div>
+        <div class="film-card"><img src="film12.jpg" alt="Film 12"></div>
+        <!-- Duplicate for smooth scroll -->
+        <div class="film-card"><img src="film7.jpg" alt="Film 7"></div>
+        <div class="film-card"><img src="film8.jpg" alt="Film 8"></div>
+        <div class="film-card"><img src="film9.jpg" alt="Film 9"></div>
+        <div class="film-card"><img src="film10.jpg" alt="Film 10"></div>
+        <div class="film-card"><img src="film11.jpg" alt="Film 11"></div>
+        <div class="film-card"><img src="film12.jpg" alt="Film 12"></div>
+      </div>
+    </div>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-button">Back</a>
+
+  </div>
+</section>
+
+<!-- ===== CONTACT INFORMATION SECTION ===== -->
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-box">
+      <h2>Contact Me</h2>
+
+     <form action="mailto:zulaikhazambryy@gmail.com" method="post" enctype="text/plain">
+        <input type="text" name="Name" placeholder="Your Name" required>
+        <input type="email" name="Email" placeholder="Your Email" required>
+        <textarea name="Message" rows="4" placeholder="Your Message"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+
+     </div>
+  </div>
+</section>
+
+<footer>
+  <p>©2026 Explore Malaysia East Cost</p>
+  <p>Created by zulaikha zambry | IMD318</p>
+  <p>Last updated: January 2026</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
