@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pahang | East Coast Malaysia</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --blue:#1e88a8;
+  --green:#4caf50;
+  --brown:#8d6e63;
+  --bg:#f4f9f9;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:#333;
+  scroll-behavior:smooth;
+  margin:0;
+}
+
+/* NAVBAR */
+.navbar{
+  background:linear-gradient(90deg,var(--blue),var(--green));
+}
+.navbar a{
+  color:white !important;
+  font-weight:500;
+}
+
+.hero{
+  position:relative;
+  height:100vh; /* FULL SCREEN */
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  padding:0 15px;
+
+}
+.hero{
+  position:relative;
+  height:100vh; /* penuh skrin */
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  padding:0 15px;
+}
+
+.hero video{
+  position:absolute;
+  top:50%;
+  left:50%;
+  min-width:100%;
+  min-height:100%;
+  width:auto;
+  height:auto;
+  transform:translate(-50%, -50%);
+  object-fit:cover; /* FULL SCREEN tanpa black bars */
+  z-index:-2;
+}
+
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:-1;
+}
+
+.hero h1{
+  font-size:7rem;
+  font-weight:700;
+  margin-bottom:20px;
+}
+
+.hero p{
+  max-width:650px;
+  font-size:1.15rem;
+}
+
+/* GALLERY */
+.gallery{
+  padding:50px 15px;
+}
+
+.gallery img{
+  width:100%;
+  height:250px;
+  object-fit:cover;
+  border-radius:12px;
+  transition:transform .3s;
+}
+
+.gallery img:hover{
+  transform:scale(1.05);
+}
+
+/* CONTACT */
+.contact-section{
+  background:linear-gradient(90deg,var(--green),var(--blue));
+  padding:80px 0;
+}
+
+.contact-box{
+  max-width:600px;
+  margin:auto;
+  background:white;
+  padding:40px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.contact-box h2{
+  text-align:center;
+  margin-bottom:15px;
+  font-weight:700;
+  color:var(--green);
+}
+
+.contact-text{
+  text-align:center;
+  font-size:.95rem;
+  margin-bottom:25px;
+}
+
+.contact-box h3{
+  text-align:center;
+  margin:20px 0 15px;
+  font-weight:600;
+}
+
+.contact-box input,
+.contact-box textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+.contact-box textarea{
+  resize:none;
+}
+
+.contact-box button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:25px;
+  background:linear-gradient(90deg,var(--green),var(--blue));
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.back-button{
+  display:block;
+  width:220px;
+  margin:25px auto 0;
+  padding:12px;
+  text-align:center;
+  background:var(--green);
+  color:white;
+  font-weight:600;
+  border-radius:25px;
+  text-decoration:none;
+}
+
+.back-button:hover{
+  background:var(--blue);
+}
+
+/* FOOTER */
+footer{
+  background:linear-gradient(90deg,var(--green),var(--blue));
+  color:white;
+  text-align:center;
+  padding:25px 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">Pahang</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="Index.html">Home</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="attractionn.html">Main Attraction</a></li>
+        <li class="nav-item"><a class="nav-link" href="FOODie.html">Traditional Food</a></li>
+        <li class="nav-item"><a class="nav-link" href="culturess.html">Culture</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="https://www.pexels.com/download/video/15184958/" type="video/mp4">
+  </video>
+
+  <div>
+    <h1>Pahang</h1>
+    <p>
+      Welcome to the informational website of Pahang. Pahang is the largest state
+      in Peninsular Malaysia, famous for its rainforests, beaches, highlands,
+      national parks, and diverse cultural heritage.
+    </p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery container">
+  <div class="row g-4">
+    <div class="col-md-4"><img src="https://images.pexels.com/photos/34578393/pexels-photo-34578393.jpeg"></div>
+    <div class="col-md-4"><img src="https://images.pexels.com/photos/35577668/pexels-photo-35577668.jpeg"></div>
+    <div class="col-md-4"><img src="https://i.pinimg.com/736x/c0/eb/9b/c0eb9b3341050ef1eb25744bf9d6bf01.jpg"></div>
+    <div class="col-md-4"><img src="https://i.pinimg.com/1200x/50/46/1f/50461ff5eaace55e1fb2c5693f5e4f1a.jpg"></div>
+    <div class="col-md-4"><img src="https://cdn.pixabay.com/photo/2016/11/07/18/00/french-village-style-resort-1806409_640.jpg"></div>
+    <div class="col-md-4"><img src="https://i.pinimg.com/1200x/8a/57/0a/8a570a8a6454d0f2dcfb161e2b1c32c3.jpg"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="contact-box">
+    <h2>Contact Information</h2>
+
+    <p class="contact-text">
+      If you have any questions, suggestions, or feedback regarding this website,
+      feel free to contact me using the information below.
+    </p>
+
+    <h3>Send a Message</h3>
+
+    <form action="mailto:your@email.com" method="post" enctype="text/plain">
+      <input type="text" name="Name" placeholder="Your Name" required>
+      <input type="email" name="Email" placeholder="Your Email" required>
+      <textarea name="Message" rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+    <a href="index.html" class="back-button">Back to Home</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Explore Malaysia East Coast</p>
+  <p>Created by Ain | IMD318</p>
+  <p>Last updated: January 2026</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terengganu | Main Attractions</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --blue:#1e88a8;
+  --green:#43a047;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:url('main-attractions-homepage.jpg') no-repeat center fixed;
+  background-size:cover;
+  overflow-x: hidden;
+  position:relative;
+}
+
+/* DISCOVER TERENGGANU TEXT AT TOP CENTER */
+#discoverText {
+  position:absolute;
+  top:225px;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:'Poppins', sans-serif;
+  font-weight:700;
+  font-size:4rem;
+  color:white;
+  text-transform:uppercase;
+  opacity:0;
+  animation:fadeInOut 4s infinite;
+  z-index:10;
+  text-align:center;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+  display:flex;
+  gap:20px;
+  justify-content:center;
+}
+#discoverText span {
+  display:inline-block;
+}
+@keyframes fadeInOut{
+  0%, 100% {opacity:0;}
+  25%, 75% {opacity:1;}
+}
+
+/* NAVBAR */
+.navbar{
+  background:transparent;
+}
+.navbar a{
+  color:white!important;
+}
+
+/* TOP SECTION */
+.mobile-preview{
+  height:100vh;
+}
+
+/* MAIN ATTRACTIONS */
+.section-title{
+  text-align:center;
+  margin-bottom:50px;
+}
+.section-title h2{
+  font-family:'Great Vibes',cursive;
+  font-size:4rem; /* increased size */
+  color:white;
+  font-weight:700;
+}
+
+.carousel-container{
+  max-width:1200px;
+  margin:auto;
+  padding:60px 30px;
+  position:relative;
+}
+
+.carousel-track{
+  display:flex;
+  gap:30px;
+  transition:transform 0.5s ease;
+}
+
+.carousel-card{
+  flex:0 0 250px;
+  background:white;
+  border-radius:12px;
+  padding:15px;
+  text-align:center;
+  box-shadow:0 5px 15px rgba(0,0,0,.2);
+  transition:.5s;
+  cursor:pointer;
+}
+
+.carousel-card img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:10px;
+  margin-bottom:10px;
+}
+
+.carousel-card.active{
+  transform:scale(1.12);
+  box-shadow:0 18px 30px rgba(0,0,0,.35);
+}
+
+/* CONTROLS */
+.carousel-controls{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  margin-top:25px;
+}
+
+.arrow-btn{
+  border:none;
+  background:var(--blue);
+  color:white;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  cursor:pointer;
+}
+.arrow-btn:focus{
+  outline:2px solid var(--green);
+  outline-offset:2px;
+}
+
+.bullets{
+  display:flex;
+  gap:10px;
+}
+.bullet{
+  width:12px;
+  height:12px;
+  background:#ccc;
+  border-radius:50%;
+  cursor:pointer;
+}
+.bullet.active{
+  background:var(--green);
+}
+.bullet:focus{
+  outline:2px solid var(--green);
+  outline-offset:2px;
+}
+
+/* ACCOMMODATION */
+.accommodation-section{
+  margin:100px auto;
+  padding:60px 30px;
+  border-radius:20px;
+}
+.accommodation-header{
+  background:white;
+  border-radius:15px;
+  padding:20px;
+  margin-bottom:40px;
+  text-align:center; /* center content */
+}
+.accommodation-title{
+  font-family:'Great Vibes',cursive; /* changed font to match main attractions */
+  font-size:2.5rem; /* slightly larger to match style */
+  font-weight:700;
+  color:var(--blue);
+  margin-bottom:15px;
+}
+.accommodation-text{
+  font-size:1.1rem;
+  color:#555;
+}
+.accommodation-card{
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,.2);
+  transition:.4s;
+  background:white;
+  cursor:pointer;
+}
+.accommodation-card img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+}
+.accommodation-card:hover{
+  transform:translateY(-6px);
+}
+
+/* FOOTER */
+footer{
+  background:linear-gradient(90deg,
+    #ff8c42,
+    #f6b38e,
+    #eac1a1
+  );
+  color:white;
+  text-align:center;
+  padding:10px 0;
+  font-size:0.9rem;
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 768px){
+  .carousel-card {
+    flex: 0 0 180px;
+  }
+  #discoverText {
+    font-size:2.5rem;
+    top:150px;
+  }
+}
+
+/* Back Button */
+.back-button {
+  display: block;
+  width: 200px;
+  margin: 30px auto 120px;
+  padding: 12px 25px;
+  text-align: center;
+  background: white;
+  color: var(--green);
+  font-weight: 600;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: var(--green);
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- DISCOVER TERENGGANU -->
+<div id="discoverText" aria-live="polite">
+  <span>DISCOVER</span><span>TERENGGANU</span>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-white" href="index.html">Terengganu</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="main-attractions.html">Main Attraction</a></li>
+        <li class="nav-item"><a class="nav-link" href="traditional-food.html">Food</a></li>
+        <li class="nav-item"><a class="nav-link" href="culture.html">Culture</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="mobile-preview"></section>
+
+<!-- MAIN ATTRACTIONS -->
+<section>
+  <div class="container">
+    <div class="section-title"><h2>Main Attractions</h2></div>
+
+    <div class="carousel-container">
+      <div class="carousel-track">
+        <div class="carousel-card" data-name="Crystal Mosque" data-desc="The Crystal Mosque is an architectural marvel made of steel and glass, reflecting light beautifully during sunrise and sunset. It's a must-see attraction in Kuala Terengganu for its stunning design and serene ambiance." data-link="https://www.google.com/maps/search/?api=1&query=Crystal+Mosque+Terengganu">
+          <img src="crystal-mosque.jpg" alt="Crystal Mosque, Kuala Terengganu">
+          <h5>Crystal Mosque</h5>
+        </div>
+        <div class="carousel-card" data-name="Pasar Payang" data-desc="Pasar Payang is the largest and most popular market in Kuala Terengganu, offering traditional batik, handicrafts, spices, and local delicacies. Experience the bustling atmosphere and shop for souvenirs." data-link="https://www.google.com/maps/search/?api=1&query=Pasar+Payang+Terengganu">
+          <img src="pasar-payang.jpg" alt="Pasar Payang Market, Kuala Terengganu">
+          <h5>Pasar Payang</h5>
+        </div>
+        <div class="carousel-card" data-name="Pulau Redang" data-desc="Pulau Redang is a tropical paradise known for its crystal-clear waters and vibrant coral reefs. Ideal for snorkeling, diving, and relaxing on pristine beaches. A perfect getaway for nature lovers." data-link="https://www.google.com/maps/search/?api=1&query=Pulau+Redang">
+          <img src="pulau-redang.jpg" alt="Pulau Redang Beach and Coral Reefs">
+          <h5>Pulau Redang</h5>
+        </div>
+        <div class="carousel-card" data-name="Pulau Perhentian" data-desc="The Perhentian Islands feature white sandy beaches, turquoise waters, and abundant marine life. Popular with backpackers and travelers seeking snorkeling, diving, or a peaceful beach retreat." data-link="https://www.google.com/maps/search/?api=1&query=Pulau+Perhentian">
+          <img src="pulau-perhentian.jpg" alt="Pulau Perhentian Beaches">
+          <h5>Pulau Perhentian</h5>
+        </div>
+        <div class="carousel-card" data-name="Tasik Kenyir" data-desc="Tasik Kenyir is Southeast Asia's largest man-made lake, surrounded by lush rainforest. Enjoy fishing, boating, or exploring the waterfalls and wildlife in this natural haven." data-link="https://www.google.com/maps/search/?api=1&query=Tasik+Kenyir">
+          <img src="tasik-kenyir.jpg" alt="Tasik Kenyir Lake and Rainforest">
+          <h5>Tasik Kenyir</h5>
+        </div>
+        <div class="carousel-card" data-name="State Museum" data-desc="Terengganu State Museum showcases Malay heritage, traditional architecture, and local history. A cultural hub offering exhibitions, artifacts, and insight into the state's rich history." data-link="https://www.google.com/maps/search/?api=1&query=Terengganu+State+Museum">
+          <img src="terengganu-state-museum.jpg" alt="Terengganu State Museum">
+          <h5>State Museum</h5>
+        </div>
+        <div class="carousel-card" data-name="Drawbridge" data-desc="The Terengganu Drawbridge is an iconic modern landmark connecting the city with coastal areas. Admire its engineering and scenic views, especially at sunset when the bridge lights up beautifully." data-link="https://www.google.com/maps/search/?api=1&query=Terengganu+Drawbridge">
+          <img src="terengganu-drawbridge.jpg" alt="Terengganu Drawbridge">
+          <h5>Drawbridge</h5>
+        </div>
+        <div class="carousel-card" data-name="Chinatown" data-desc="Kuala Terengganu's Chinatown features historic streets, traditional shophouses, and a vibrant food scene. Explore the cultural heritage, shop for souvenirs, and enjoy local cuisine." data-link="https://www.google.com/maps/search/?api=1&query=Chinatown+Kuala+Terengganu">
+          <img src="chinatown-heritage-streets.jpg" alt="Chinatown Streets, Kuala Terengganu">
+          <h5>Chinatown</h5>
+        </div>
+        <div class="carousel-card" data-name="Pantai Batu Buruk" data-desc="Pantai Batu Buruk is a popular beach for swimming, jogging, and watching sunsets. Families and tourists flock here to enjoy the relaxed atmosphere and scenic coastline." data-link="https://www.google.com/maps/search/?api=1&query=Pantai+Batu+Buruk">
+          <img src="pantai-batu-buruk.jpg" alt="Pantai Batu Buruk Beach, Kuala Terengganu">
+          <h5>Pantai Batu Buruk</h5>
+        </div>
+        <div class="carousel-card" data-name="Floating Mosque" data-desc="Masjid Tengku Tengah Zaharah, known as the Floating Mosque, is built on the water with a striking architecture. Visit for its beauty, peaceful surroundings, and sunset views." data-link="https://www.google.com/maps/search/?api=1&query=Masjid+Tengku+Tengah+Zaharah">
+          <img src="masjid-tengku-tengah-zaharah.jpg" alt="Floating Mosque, Terengganu">
+          <h5>Floating Mosque</h5>
+        </div>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="arrow-btn" id="prev" aria-label="Previous Slide">❮</button>
+        <div class="bullets" role="tablist"></div>
+        <button class="arrow-btn" id="next" aria-label="Next Slide">❯</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCOMMODATION -->
+<section class="accommodation-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-4 mb-4">
+        <div class="accommodation-header">
+          <h3 class="accommodation-title">Accommodation Recommendations</h3>
+          <p class="accommodation-text">
+            Interested in visiting Terengganu? Here are some hotels and homestay
+            recommendations for you to enjoy a comfortable stay.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <a href="https://www.google.com/search?q=Resorts+World+Kijal" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+              <div class="accommodation-card">
+                <img src="hotel1.jpg" alt="Resorts World Kijal Hotel">
+                <div class="p-3"><h5>Resorts World Kijal</h5></div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="https://www.google.com/search?q=Duyong+Marina+&+Resort" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+              <div class="accommodation-card">
+                <img src="hotel2.jpg" alt="Duyong Marina & Resort Hotel">
+                <div class="p-3"><h5>Duyong Marina & Resort</h5></div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="https://www.google.com/search?q=The+Taaras+Beach+&+Spa" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+              <div class="accommodation-card">
+                <img src="hotel3.jpg" alt="The Taaras Beach & Spa Hotel">
+                <div class="p-3"><h5>The Taaras Beach & Spa</h5></div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="https://www.google.com/search?q=Gading+Chalet" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+              <div class="accommodation-card">
+                <img src="hotel4.jpg" alt="Gading Chalet">
+                <div class="p-3"><h5>Gading Chalet</h5></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal for Main Attractions -->
+<div class="modal fade" id="attractionModal" tabindex="-1" aria-labelledby="attractionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="attractionModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="attractionDesc"></p>
+        <a href="#" target="_blank" id="attractionLink" class="btn btn-primary" rel="noopener noreferrer">View Location</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Back Button -->
+<a href="index.html" class="back-button">Back</a>
+
+<footer>
+  <p>©2026 Explore Malaysia East Cost</p>
+  <p>Created by zulaikha zambry | IMD318</p>
+  <p>Last updated: January 2026</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Carousel
+const track=document.querySelector('.carousel-track');
+const cards=Array.from(track.children);
+const bulletsContainer=document.querySelector('.bullets');
+const prev=document.getElementById('prev');
+const next=document.getElementById('next');
+
+let currentIndex=0;
+
+// Create bullets with accessibility
+cards.forEach((_,i)=>{
+  const b=document.createElement('div');
+  b.className='bullet';
+  b.setAttribute('role','tab');
+  b.setAttribute('aria-label','Slide '+(i+1));
+  b.onclick=()=>{currentIndex=i; updateCarousel();}
+  bulletsContainer.appendChild(b);
+});
+const bullets=[...bulletsContainer.children];
+
+function updateCarousel(){
+  cards.forEach(c=>c.classList.remove('active'));
+  bullets.forEach(b=>b.classList.remove('active'));
+  cards[currentIndex].classList.add('active');
+  bullets[currentIndex].classList.add('active');
+
+  const cardWidth=cards[0].offsetWidth+30;
+  const containerWidth=track.parentElement.offsetWidth;
+  const offset=cardWidth*currentIndex-(containerWidth-cardWidth)/2;
+  track.style.transform=`translateX(-${offset}px)`;
+}
+
+prev.onclick=()=>{currentIndex=(currentIndex-1+cards.length)%cards.length;updateCarousel();}
+next.onclick=()=>{currentIndex=(currentIndex+1)%cards.length;updateCarousel();}
+
+// Auto-slide
+let autoSlide = setInterval(()=>{currentIndex=(currentIndex+1)%cards.length;updateCarousel();},3000);
+
+window.onload=updateCarousel;
+window.onresize=updateCarousel;
+
+// Main Attraction Modal
+const attractionModal = new bootstrap.Modal(document.getElementById('attractionModal'));
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    const name = card.getAttribute('data-name');
+    const desc = card.getAttribute('data-desc');
+    const link = card.getAttribute('data-link');
+    document.getElementById('attractionModalLabel').textContent = name;
+    document.getElementById('attractionDesc').textContent = desc;
+    const attractionLink = document.getElementById('attractionLink');
+    attractionLink.href = link;
+    attractionLink.setAttribute('rel','noopener noreferrer');
+    attractionModal.show();
+    clearInterval(autoSlide);
+  });
+});
+
+document.getElementById('attractionModal').addEventListener('hidden.bs.modal', ()=>{
+  autoSlide = setInterval(()=>{currentIndex=(currentIndex+1)%cards.length;updateCarousel();},3000);
+});
+</script>
+</body>
+</html>

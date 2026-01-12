@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pahang | Food Gallery</title>
+
+<!-- FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --blue: #1e88a8;
+  --green: #4caf50;
+  --brown: #8d6e63;
+  --yellow: #ffcc00;
+  --bg: #f4f9f9;
+  --text: #333;
+}
+/* FOOTER */
+footer {
+  background: linear-gradient(90deg, var(--green), var(--blue));
+  color: white;
+  text-align: center;
+  padding: 25px 0;
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+/* RESET & BASE */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+/* NAVIGATION */
+.top-bar { 
+  padding: 20px 40px; display: flex; justify-content: space-between; 
+  background: linear-gradient(90deg, var(--blue), var(--green)); 
+  position: fixed; width: 100%; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.logo { font-weight:600; color:#fff; letter-spacing:2px; font-size:1.5rem; }
+.nav-links a { margin-left:30px; text-decoration:none; color:#fff; font-size:.85rem; opacity:.8; transition:0.3s; }
+.nav-links a:hover { opacity:1; font-weight:600; }
+.nav-links a.active { border-bottom: 2px solid var(--yellow); font-weight:700; opacity:1; }
+
+/* SECTION STYLING */
+section { min-height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; scroll-snap-align: start; padding: 100px 40px; }
+.section-1, .section-2 { width: 100%; }
+
+/* SECTION TITLES */
+.section-1 h2, .section-2 h2 { 
+  font-family: 'Great Vibes', cursive; 
+  font-size: 3rem; 
+  color: var(--blue); 
+  font-weight: 400; 
+  text-align: center;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+.section-1 .subtitle, .section-2 .subtitle { opacity:0.7; font-size:1rem; text-align:center; margin-bottom:40px; }
+
+/* GRID CARDS */
+.grid-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1100px; width: 100%; }
+.card-light { 
+  background: #fff; padding: 20px; border-radius: 30px; text-align: center; 
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08); cursor: pointer; transition: all 0.4s ease; 
+  border-left:6px solid var(--green);
+}
+.card-light img { width: 100%; height: 160px; object-fit: cover; border-radius: 20px; margin-bottom: 15px; }
+.card-light h3 { font-size:1.1rem; margin-bottom:10px; color:var(--blue); font-weight:600; }
+.price-tag { background: var(--yellow); color: #fff; padding:6px 16px; border-radius:20px; font-size:0.75rem; font-weight:700; display:inline-block; }
+.card-light:hover { transform:translateY(-6px); box-shadow:0 20px 40px rgba(0,0,0,0.12); }
+
+/* TOP LIST CARDS */
+.top-list-container { display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-top:40px; }
+.card-dark { 
+  background: rgba(255,255,255,0.9); width:320px; padding:30px; border-radius: 40px; text-align:left; 
+  position: relative; backdrop-filter: blur(15px); box-shadow:0 15px 35px rgba(0,0,0,0.1); cursor:pointer;
+}
+.card-dark img { width:170px; height:170px; border-radius:50%; object-fit:cover; margin:-90px auto 20px; display:block; box-shadow:0 12px 25px rgba(0,0,0,0.2); }
+.card-dark img:hover { transform: rotate(15deg) scale(1.1); }
+.rating { color: var(--yellow); font-weight:700; margin-bottom:10px; display:block; font-size:0.9rem; }
+.card-dark h4 { font-size:1.2rem; margin-bottom:8px; color: var(--blue); }
+.card-dark p.desc { font-size:0.85rem; opacity:0.7; margin-bottom:25px; line-height:1.5; }
+.footer-card { display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(0,0,0,0.08); padding-top:20px; }
+.info-btn { background: var(--green); color:#fff; width:40px; height:40px; border-radius:50%; border:none; font-size:1.2rem; font-weight:700; font-style:italic; cursor:pointer; transition:0.3s; display:flex; align-items:center; justify-content:center; }
+.info-btn:hover { background: var(--blue); transform:scale(1.1); }
+
+/* MODAL */
+.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:200; }
+.modal-content { background:#fff; border-radius:30px; padding:30px; max-width:600px; width:90%; text-align:center; transform:scale(0.7); opacity:0; }
+.modal-content img { width:100%; height:auto; border-radius:20px; margin-bottom:20px; }
+.modal-content h3, .modal-content p, .modal-content .price-tag { margin-bottom:15px; }
+.close-btn { position:absolute; top:15px; right:20px; font-size:2rem; cursor:pointer; color:var(--blue); transition:0.3s; }
+.close-btn:hover { color: var(--yellow); }
+
+/* ANIMATION */
+@keyframes modalZoomIn {
+  to { transform: scale(1); opacity:1; }
+}
+@keyframes fadeInUp {
+  from { transform: translateY(20px); opacity:0; }
+  to { transform: translateY(0); opacity:1; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) { .grid-container { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .grid-container { grid-template-columns: 1fr; } }
+
+</style>
+/* FOOTER */
+footer {
+  background: linear-gradient(90deg, var(--green), var(--blue));
+  color: white;
+  text-align: center;
+  padding: 25px 0;
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+</head>
+<body>
+
+<nav class="top-bar">
+  <div class="logo">PAHANG</div>
+  <div class="nav-links">
+    <a href="Index.html">Home</a>
+    <a href="attractionn.html">Main Attraction</a>
+    <a href="FOODie.html" class="active">Traditional Food</a>
+    <a href="culturess.html">Culture</a>
+  </div>
+</nav>
+
+<!-- SECTION 1: Traditional Food -->
+<section class="section-1">
+  <h2>Traditional Food</h2>
+  <p class="subtitle">Authentic Flavors of Pahang Darul Makmur</p>
+  <div class="grid-container">
+    <!-- All cards clickable -->
+    <div class="card-light" data-title="Puding Diraja" data-desc="Royal pudding made with a mix of eggs, milk and gula melaka. Sweet and traditional dessert." data-img="https://i.pinimg.com/1200x/3f/a5/72/3fa572f7b912f0a0bb8e09cf28fd5ba5.jpg" data-price="RM 12 - RM 30">
+      <img src="https://i.pinimg.com/1200x/3f/a5/72/3fa572f7b912f0a0bb8e09cf28fd5ba5.jpg" alt="Puding Diraja">
+      <h3>Puding Diraja</h3>
+      <span class="price-tag">RM 12 - RM 30</span>
+    </div>
+    <div class="card-light" data-title="Sambal Hitam" data-desc="Black sambal from Pahang, spicy and rich with local flavors." data-img="https://i.pinimg.com/736x/66/d6/f6/66d6f64c75c407aeab37c3701862f8b3.jpg" data-price="RM 10 - RM 25">
+      <img src="https://i.pinimg.com/736x/66/d6/f6/66d6f64c75c407aeab37c3701862f8b3.jpg" alt="Sambal Hitam">
+      <h3>Sambal Hitam</h3>
+      <span class="price-tag">RM 10 - RM 25</span>
+    </div>
+    <div class="card-light" data-title="Sata Pahang" data-desc="Grilled fish wrapped in banana leaf, seasoned with coconut and spices." data-img="https://ikanmas.in/wp-content/uploads/2022/06/Sata3.jpg" data-price="RM 5 - RM 15">
+      <img src="https://ikanmas.in/wp-content/uploads/2022/06/Sata3.jpg" alt="Sata">
+      <h3>Sata Pahang</h3>
+      <span class="price-tag">RM 5 - RM 15</span>
+    </div>
+    <div class="card-light" data-title="Opor Daging Pekan" data-desc="Beef cooked with traditional spices, creamy and flavorful." data-img="https://orientalcuisine.my/wp-content/uploads/2021/08/4.beef-web.gif" data-price="RM 15 - RM 40">
+      <img src="https://orientalcuisine.my/wp-content/uploads/2021/08/4.beef-web.gif" alt="Opor Daging">
+      <h3>Opor Daging Pekan</h3>
+      <span class="price-tag">RM 15 - RM 40</span>
+    </div>
+    <div class="card-light" data-title="Ikan Bakar Petai" data-desc="Grilled fish served with local petai beans and spicy sauce." data-img="https://images.deliveryhero.io/image/fd-my/LH/p5tz-listing.jpg" data-price="RM 20 - RM 50">
+      <img src="https://images.deliveryhero.io/image/fd-my/LH/p5tz-listing.jpg" alt="Ikan Bakar">
+      <h3>Ikan Bakar Petai</h3>
+      <span class="price-tag">RM 20 - RM 50</span>
+    </div>
+    <div class="card-light" data-title="Kuih Qasidah" data-desc="Sweet traditional Malay kuih made from coconut, sugar and eggs." data-img="https://upload.wikimedia.org/wikipedia/ms/3/39/Kuih_Qasidah.jpg" data-price="RM 5 - RM 12">
+      <img src="https://upload.wikimedia.org/wikipedia/ms/3/39/Kuih_Qasidah.jpg" alt="Kuih Qasidah">
+      <h3>Kuih Qasidah</h3>
+      <span class="price-tag">RM 5 - RM 12</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: Top List -->
+<section class="section-2">
+  <h2>Top List</h2>
+  <p class="subtitle">Our mainstay menu</p>
+  <div class="top-list-container">
+    <div class="card-dark" data-title="Ikan Patin Tempoyak" data-desc="Silver catfish cooked in rich fermented durian gravy. The soul of Temerloh." data-img="https://pemetaanbudaya.jkkn.gov.my/uploads/67bd2606023da1740449286.png" data-price="RM 15.00 - RM 55.00">
+      <img src="https://pemetaanbudaya.jkkn.gov.my/uploads/67bd2606023da1740449286.png" alt="Patin">
+      <span class="rating">★ 9.2</span>
+      <h4>Ikan Patin Tempoyak</h4>
+      <p class="desc">Silver catfish cooked in rich fermented durian gravy. The soul of Temerloh.</p>
+      <div class="footer-card">
+        <strong>RM 15.00 - RM 55.00</strong>
+      </div>
+    </div>
+    <div class="card-dark" data-title="Laksa Pahang" data-desc="Thick fish gravy served with signature handmade rice noodles." data-img="https://img-global.cpcdn.com/recipes/4d2ed4a54064f8a5/1200x630cq80/photo.jpg" data-price="RM 8.00 - RM 18.00">
+      <img src="https://img-global.cpcdn.com/recipes/4d2ed4a54064f8a5/1200x630cq80/photo.jpg" alt="Laksa">
+      <span class="rating">★ 8.5</span>
+      <h4>Laksa Pahang</h4>
+      <p class="desc">Thick fish gravy served with signature handmade rice noodles.</p>
+      <div class="footer-card">
+        <strong>RM 8.00 - RM 18.00</strong>
+      </div>
+    </div>
+    <div class="card-dark" data-title="Mee Calong" data-desc="Traditional fishball noodle soup from Beserah, using pure fish paste." data-img="https://d3lmgsai2rsy7d.cloudfront.net/gempak/media/article/2018/Apr/mee-calong-01.jpg" data-price="RM 7.00 - RM 15.00">
+      <img src="https://d3lmgsai2rsy7d.cloudfront.net/gempak/media/article/2018/Apr/mee-calong-01.jpg" alt="Mee Calong">
+      <span class="rating">★ 8.1</span>
+      <h4>Mee Calong</h4>
+      <p class="desc">Traditional fishball noodle soup from Beserah, using pure fish paste.</p>
+      <div class="footer-card">
+        <strong>RM 7.00 - RM 15.00</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="foodModal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <img src="" alt="" id="modalImg">
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc"></p>
+    <span class="price-tag" id="modalPrice"></span>
+  </div>
+</div>
+
+<script>
+// Select modal elements
+const modal = document.getElementById('foodModal');
+const modalContent = modal.querySelector('.modal-content');
+const modalImg = document.getElementById('modalImg');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDesc');
+const modalPrice = document.getElementById('modalPrice');
+const closeBtn = document.getElementById('closeModal');
+
+// Open modal function
+function openModal(img, title, desc, price){
+  modal.style.display = 'flex';
+  modalImg.src = img;
+  modalTitle.innerText = title;
+  modalDesc.innerText = desc;
+  modalPrice.innerText = price;
+  modalContent.style.animation = 'modalZoomIn 0.5s forwards';
+}
+
+// Close modal events
+closeBtn.addEventListener('click', () => modal.style.display = 'none');
+window.addEventListener('click', e => { if(e.target == modal) modal.style.display = 'none'; });
+
+// Make all cards clickable
+document.querySelectorAll('.card-light, .card-dark').forEach(card => {
+  card.addEventListener('click', () => {
+    openModal(card.dataset.img, card.dataset.title, card.dataset.desc, card.dataset.price);
+  });
+});
+</script>
+
+<footer>
+  <p>© 2026 Explore Malaysia East Coast</p>
+  <p>Created by Ain | IMD318</p>
+  <p>Last updated: January 2026</p>
+</footer>
+
+</body>
+</html>
