@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terengganu | Culture</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+:root{
+  --blue:#1e88a8;
+  --green:#43a047;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  padding-top:70px;
+  margin:0;
+  overflow-x:hidden;
+  background:url('culture-bg.jpg') no-repeat center center fixed;
+  background-size:cover;
+}
+
+/* NAVBAR */
+.navbar{
+  background:transparent;
+}
+.navbar a{
+  color:black !important;
+  font-weight:500;
+  text-shadow: 1px 1px 0 var(--green), -1px -1px 0 var(--blue); /* outline using footer colors */
+}
+.navbar-brand{
+  color:black !important;
+  text-shadow: 1px 1px 0 var(--green), -1px -1px 0 var(--blue); /* outline */
+}
+.navbar a.active{
+  text-decoration:underline;
+  font-weight:bold;
+}
+
+/* SECTION TITLE (BIGGER & BOLDER) */
+.section-title h2{
+  font-family:'Great Vibes',cursive;
+  font-size:3.8rem;
+  font-weight:bold;
+  color:black;
+  text-align:center;
+  margin-bottom:30px;
+  text-shadow: 2px 2px 0 var(--green), -2px -2px 0 var(--blue); /* outline */
+}
+
+/* CAROUSEL */
+.culture-carousel{
+  position:relative;
+  max-width:1000px;
+  height:460px;
+  margin:0 auto 80px;
+}
+
+/* LIFT THE CARDS SO THEY ARE JUST UNDER TITLE */
+.culture-track{
+  position:relative;
+  height:100%;
+  top:-40px;
+}
+
+/* BIGGER CARDS */
+.culture-card{
+  width:260px;
+  height:380px;
+  position:absolute;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  border-radius:20px;
+  overflow:hidden;
+  cursor:pointer;
+  box-shadow:0 15px 40px rgba(0,0,0,.5);
+  transition:all .6s ease;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(5px);
+  border:2px solid rgba(255,255,255,.4);
+}
+
+.culture-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:18px;
+}
+.culture-content{
+  position:absolute;
+  bottom:10px;
+  width:100%;
+  text-align:center;
+  color:white;
+  background:rgba(0,0,0,.4);
+  padding:8px 0;
+  font-weight:700;
+}
+.culture-card.active{
+  box-shadow:0 0 30px 8px rgba(255,255,255,.6),0 15px 40px rgba(0,0,0,.5);
+}
+
+/* ARROWS */
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:3rem;
+  cursor:pointer;
+  z-index:10;
+  color:white;
+  text-shadow:2px 2px 8px rgba(0,0,0,0.6);
+}
+.arrow-left{left:-60px;}
+.arrow-right{right:-60px;}
+
+/* OVERLAY */
+.overlay{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,.7);
+  z-index:999;
+  pointer-events:none;
+  opacity:0;
+  transition:.3s;
+}
+.overlay.active{
+  pointer-events:auto;
+  opacity:1;
+}
+.sheet{
+  background:white;
+  max-width:1000px;
+  width:90%;
+  border-radius:20px;
+  padding:20px;
+  display:flex;
+  gap:20px;
+  transform:scale(.8);
+  transition:.4s;
+}
+.sheet.active{
+  transform:scale(1);
+}
+
+/* MONITOR */
+.monitor{
+  width:500px;
+  background:#111;
+  border:4px solid white;
+  padding:18px;
+  border-radius:18px;
+  position:relative;
+}
+.screen-inner{
+  background:black;
+  border-radius:10px;
+  overflow:hidden;
+  aspect-ratio:16/9;
+  position:relative;
+}
+.screen-inner video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* CRAWLING VIDEO TITLE */
+.video-title{
+  position:absolute;
+  bottom:8px;
+  width:100%;
+  overflow:hidden;
+  white-space:nowrap;
+  background:rgba(0,0,0,.5);
+  color:white;
+  padding:4px 12px;
+  border-radius:10px;
+}
+.video-title span{
+  display:inline-block;
+  padding-left:100%;
+  animation:crawl 10s linear infinite;
+}
+@keyframes crawl{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-110%);}
+}
+
+.monitor-stand{
+  width:150px;
+  height:18px;
+  background:#222;
+  margin:18px auto 0;
+  border-radius:6px;
+}
+
+/* DESCRIPTION */
+.desc-column{
+  flex:1;
+  padding:25px;
+}
+.desc-column h3{
+  font-family:'Great Vibes',cursive;
+  color:var(--blue);
+  text-align:center;
+}
+.desc-column p{
+  text-align:justify;
+}
+
+/* CLOSE BUTTON */
+.close-btn{
+  position:absolute;
+  top:-14px;
+  right:-14px;
+  width:34px;
+  height:34px;
+  background:#e53935;
+  color:white;
+  border-radius:50%;
+  text-align:center;
+  line-height:34px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  background:linear-gradient(90deg,var(--green),var(--blue));
+  color:white;
+  text-align:center;
+  padding:25px;
+}
+
+/* BACK BUTTON */
+.back-button{
+  display:block;
+  width:200px;
+  margin:0 auto 20px;
+  padding:12px 25px;
+  text-align:center;
+  background:white;
+  color:var(--green);
+  font-weight:600;
+  border-radius:25px;
+  text-decoration:none;
+  transition:all 0.3s ease;
+}
+.back-button:hover{
+  background:var(--green);
+  color:white;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">Terengganu</a>
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item"><a class="nav-link" href="main-attractions.html">Main Attraction</a></li>
+      <li class="nav-item"><a class="nav-link" href="traditional-food.html">Food</a></li>
+      <li class="nav-item"><a class="nav-link active" href="culture.html">Culture</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section>
+<div class="container">
+<div class="section-title"><h2>Culture</h2></div>
+
+<div class="culture-carousel">
+  <div class="arrow arrow-left" onclick="prevCard()">‹</div>
+  <div class="arrow arrow-right" onclick="nextCard()">›</div>
+
+  <div class="culture-track">
+
+    <div class="culture-card"
+      data-video="ulek-mayang.mp4"
+      data-title="Ulek Mayang"
+      data-desc="A mesmerizing sea-inspired dance, Ulek Mayang is performed to honor sea spirits and bring harmony between humans and nature. Traditionally performed by women, the dance features flowing, wave-like movements accompanied by the haunting melodies of rebab, gongs, and drums. It’s a spiritual performance that combines ritual, music, and storytelling, reflecting Terengganu’s deep connection to the sea.">
+      <img src="ulek-mayang.jpg">
+      <div class="culture-content">Ulek Mayang</div>
+    </div>
+
+    <div class="culture-card"
+      data-video="rodat-dance.mp4"
+      data-title="Rodat Dance"
+      data-desc="Rodat is a lively and interactive folk dance that blends singing, drumming, and rhythmic movements. Often performed at weddings, festivals, and religious celebrations, it features call and response singing with traditional pantun verses and rebana drum beats. The dance showcases community spirit, energy, and the joy of Malay cultural traditions in Terengganu.">
+      <img src="rodat-dance.jpg">
+      <div class="culture-content">Rodat Dance</div>
+    </div>
+
+    <div class="culture-card"
+      data-video="gamelan-dance.mp4"
+      data-title="Gamelan Dance"
+      data-desc="Gamelan dance from Terengganu is an elegant courtly performance, featuring synchronized and graceful movements set to the soothing sounds of gongs, metallophones, and drums. Historically performed in royal courts and important ceremonies, it highlights the refinement, precision, and artistic beauty of Malay performing arts, celebrating both music and dance in perfect harmony.">
+      <img src="gamelan-dance.jpg">
+      <div class="culture-content">Gamelan Dance</div>
+    </div>
+
+  </div>
+</div>
+</div>
+</section>
+
+<div class="overlay" id="overlay">
+  <div class="sheet" id="sheet">
+    <div class="monitor">
+      <div class="close-btn" onclick="closeOverlay()">✕</div>
+      <div class="screen-inner">
+        <video id="overlayVideo" controls autoplay></video>
+        <div class="video-title"><span id="overlayTitle"></span></div>
+      </div>
+      <div class="monitor-stand"></div>
+    </div>
+    <div class="desc-column">
+      <h3 id="overlayDescTitle"></h3>
+      <p id="overlayDescText"></p>
+    </div>
+  </div>
+</div>
+
+<a href="index.html" class="back-button">Back</a>
+
+<footer>
+<p>© January 2026 Explore Malaysia East Coast</p>
+<p>Created by zulaikha zambry | IMD318</p>
+<p>Last updated: January 2026</p>
+</footer>
+
+<script>
+const cards=[...document.querySelectorAll('.culture-card')];
+let currentIndex=0;
+
+function updatePositions(){
+  const len=cards.length;
+  cards.forEach(c=>c.classList.remove('active'));
+  cards.forEach((card,i)=>{
+    const pos=(i-currentIndex+len)%len;
+    if(pos===0){
+      card.style.left='50%';
+      card.style.transform='translateX(-50%) scale(1)';
+      card.style.zIndex='10';
+      card.classList.add('active');
+    }else if(pos===1){
+      card.style.left='72%';
+      card.style.transform='translateX(-50%) scale(.8)';
+    }else if(pos===len-1){
+      card.style.left='28%';
+      card.style.transform='translateX(-50%) scale(.8)';
+    }
+  });
+}
+function nextCard(){currentIndex=(currentIndex+1)%cards.length;updatePositions();}
+function prevCard(){currentIndex=(currentIndex-1+cards.length)%cards.length;updatePositions();}
+
+cards.forEach(card=>{
+  card.onclick=()=>{
+    overlayVideo.src=card.dataset.video;
+    overlayTitle.textContent=card.dataset.title;
+    overlayDescTitle.textContent=card.dataset.title;
+    overlayDescText.textContent=card.dataset.desc;
+    overlay.classList.add('active');
+    sheet.classList.add('active');
+  };
+});
+
+function closeOverlay(){
+  overlayVideo.pause();
+  overlayVideo.src='';
+  sheet.classList.remove('active');
+  overlay.classList.remove('active');
+}
+
+updatePositions();
+</script>
+
+</body>
+</html>

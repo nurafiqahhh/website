@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pahang | Explore 10 Places</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --blue: #1e88a8;
+    --green: #43a047;
+    --bg: #f4f9f9;
+    --dark: #1c1c1c;
+    --white: #ffffff;
+}
+
+/* ================= GLOBAL ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    background-color: var(--bg);
+    color: var(--dark);
+    overflow-x: hidden;
+    padding-bottom: 100px;
+}
+
+/* ================= NAVIGATION ================= */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 40px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.logo {
+    font-weight: 700;
+    letter-spacing: 4px;
+    font-size: 1.4rem;
+    color: var(--white);
+}
+.nav-links a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: var(--white);
+    opacity: .8;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+.nav-links a:hover {
+    opacity: 1;
+    color: var(--green);
+}
+
+/* ================= SECTION TITLE ================= */
+.section-title {
+    margin: 40px auto 20px;
+    font-size: 1.6rem;
+    color: var(--blue);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* ================= SLIDER ================= */
+.slider-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 15px 40px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+.slider-container::-webkit-scrollbar { display: none; }
+
+/* ================= PLACE CARD ================= */
+.place-item {
+    min-width: 300px;
+    max-width: 450px;
+    height: 380px;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    position: relative;
+    border-radius: 25px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.place-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.place-item:hover .place-img {
+    transform: scale(1.05);
+}
+.place-title-main {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 5;
+    width: 90%;
+    color: var(--white);
+}
+.place-title-main span { font-size: 0.85rem; font-weight: 300; opacity: 0.9; }
+.place-title-main h2 { font-size: 2rem; font-weight: 700; line-height: 1; text-transform: lowercase; }
+
+/* ================= GLASS INFO ================= */
+.glass-info {
+    position: absolute;
+    bottom: 25px;
+    left: 20px;
+    width: 200px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 15px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    z-index: 10;
+}
+.glass-info strong { display: block; font-size: 0.95rem; color: var(--green); margin-bottom: 3px; }
+.glass-info p { font-size: 0.7rem; opacity: 0.85; line-height: 1.4; }
+
+/* ================= EXPLORE BUTTON ================= */
+.explore-pill {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--white);
+    padding: 12px 28px;
+    border-top-left-radius: 25px;
+    z-index: 10;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.explore-pill:hover {
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    color: var(--white);
+    transform: translateX(8px);
+}
+
+/* ================= ACCOMMODATION CARD ================= */
+.acc-item {
+    min-width: 280px;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 25px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.acc-item:hover { transform: translateY(-5px); }
+.acc-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.75));
+    border-radius: 25px;
+}
+.acc-content { position: relative; z-index: 2; margin-top: 10px; }
+.acc-content h3 { font-size: 1.2rem; font-weight: 700; line-height: 1.2; color: var(--white); }
+.acc-content p { font-size: 0.75rem; opacity: 0.9; line-height: 1.4; margin-top: 8px; color: var(--white); }
+
+/* ================= NAV BTN ================= */
+.nav-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    padding: 6px 14px;
+    border-radius: 18px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    z-index: 15;
+    color: var(--white);
+    transition: 0.3s;
+}
+.nav-btn:hover { background: var(--white); color: var(--dark); }
+
+/* ================= TIME ================= */
+.acc-time {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 0.65rem;
+    opacity: 0.7;
+    z-index: 2;
+    text-align: right;
+    color: var(--white);
+}
+
+/* ================= MODAL ================= */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-box {
+    background: var(--white);
+    color: var(--dark);
+    width: 90%;
+    max-width: 480px;
+    padding: 30px 25px;
+    border-radius: 25px;
+    text-align: left;
+    position: relative;
+}
+.modal-box h2 { color: var(--blue); margin-bottom: 10px; font-size: 1.8rem; text-align: center; }
+.modal-box .sub-title { font-weight: 700; color: var(--green); margin-top: 15px; display: block; font-size: 0.9rem; }
+.modal-box p, .modal-box ul { font-size: 0.85rem; line-height: 1.5; color: #444; margin-bottom: 10px; }
+.close-btn {
+    display: block;
+    margin: 20px auto 0 auto;
+    background: var(--blue);
+    color: var(--white);
+    border: none;
+    padding: 10px 35px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.close-btn:hover { background: var(--green); }
+
+/* ================= FOOTER ================= */
+footer {
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    color: var(--white);
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+footer p { margin: 5px 0; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="top-bar">
+    <div class="logo">PAHANG</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="attractionn.html">Main Attraction</a>
+        <a href="FOODie.html">Traditional Food</a>
+        <a href="culturess.html">Culture</a>
+    </div>
+</div>
+
+<!-- MAIN ATTRACTIONS -->
+<h2 class="section-title">Main Attractions</h2>
+<div class="slider-container" id="attractionSlider"></div>
+
+<!-- RECOMMENDED ACCOMMODATION -->
+<div class="recommendation-section">
+    <h2 class="section-title">Recommended Accommodation</h2>
+    <div class="slider-container" id="accSlider"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+    <div class="modal-box">
+        <h2 id="m-title">Title</h2>
+        <div id="m-content"></div>
+        <button class="close-btn" onclick="closeModal()">Close Details</button>
+    </div>
+</div>
+
+<script>
+const places = [
+    { name: "Taman Negara", fact: "130M Years Old", img: "https://i.pinimg.com/1200x/8a/57/0a/8a570a8a6454d0f2dcfb161e2b1c32c3.jpg", desc: "The world's oldest tropical rainforest spanning across three states.", tarikan: ["World's Longest Canopy Walk", "Visit Orang Asli Village", "Tembeling River Cruise"] },
+    { name: "Cameron Highlands", fact: "Fresh 18°C", img: "https://i.pinimg.com/736x/34/00/16/3400163ba5d522c4b3e2937e929fbc90.jpg", desc: "A cool highland retreat famous for its vast tea plantations.", tarikan: ["BOH & Cameron Valley Tea Estates", "Strawberry Picking", "Mossy Forest Exploration"] },
+    { name: "Genting Highlands", fact: "City of Fun", img: "https://i.pinimg.com/736x/13/f4/5a/13f45aa42915f04c317bae3f4042554e.jpg", desc: "An integrated entertainment hub on the mountain peak with theme parks.", tarikan: ["Genting SkyWorlds Theme Park", "Awana Skyway Cable Car", "Skytropolis Indoor Theme Park"] },
+    { name: "Pulau Tioman", fact: "Diving Spot", img: "https://i.pinimg.com/1200x/44/43/35/4443354c8d913defa253ba01422c9c5e.jpg", desc: "A marine paradise with crystal clear water and coral reefs.", tarikan: ["Snorkeling & Scuba Diving", "Hiking Mount Jajar", "Asah Waterfall"] },
+    { name: "Bukit Tinggi", fact: "French Vibes", img: "https://i.pinimg.com/736x/5e/f9/96/5ef996c85ba0def0d62d1b528af759e5.jpg", desc: "Colmar Tropicale brings 16th-century French architecture to Pahang.", tarikan: ["Japanese Village & Tea House", "Animal Park", "French Village Sightseeing"] },
+    { name: "Fraser's Hill", fact: "Bird Watching", img: "https://i.pinimg.com/736x/99/f6/e9/99f6e94fcae1e8540c7352a1c4b5b0fc.jpg", desc: "A serene colonial-style hill station known as 'The Little England'.", tarikan: ["Bird Watching Activity", "Allan's Water Paddle Boats", "Nature Trail Hiking"] },
+    { name: "Teluk Cempedak", fact: "White Sands", img: "https://i.pinimg.com/1200x/44/a8/bd/44a8bd400962720ebedbf5e432d95f32.jpg", desc: "The most iconic recreational beach in the city of Kuantan.", tarikan: ["Wooden Bridge Cliff Walk", "Local Seafood Stalls", "Sunset Viewing"] },
+    { name: "Sungai Lembing", fact: "Rainbow Falls", img: "https://i.pinimg.com/736x/26/35/cc/2635cca812a98a67d96dbb143d5406b1.jpg", desc: "A historic town once home to the world's largest underground tin mine.", tarikan: ["Rainbow Waterfall Sunrise", "Panorama Hill Hiking", "Tin Mine Tunnel Tour"] },
+    { name: "Cherating", fact: "Turtle Sanctuary", img: "https://i.pinimg.com/1200x/47/1b/ec/471bec0edf34ce7bdf16807a3fcd178d.jpg", desc: "A laid-back beach destination famous for its surfing culture.", tarikan: ["Turtle Sanctuary Visit", "Surfing Lessons", "Fireflies River Cruise"] },
+    { name: "Tasik Chini", fact: "Mystic Lake", img: "https://i.pinimg.com/1200x/c6/84/ed/c684ed66a5e542273c62b3aa20ac7ebd.jpg", desc: "Legendary freshwater lake home to myths of a sunken city.", tarikan: ["Lotus Bloom Sightseeing", "Visit Jakun Orang Asli Culture", "Lake Boat Exploration"] }
+];
+
+const recs = [
+    { name: "The Zenith Hotel", desc: "A luxury 5-star hotel located in the heart of the city.", img: "https://www.thezenithhotel.com/img/Homepage_Banner_Kuantan_01_20240606111608571_20240719140857478.jpg", address: "Jalan Putra Square 6, Putra Square, 25200 Kuantan, Pahang.", nearby: ["East Coast Mall", "Kuantan City Mall", "Berjaya Megamall"], map: "https://www.google.com/maps/search/The+Zenith+Hotel+Kuantan" },
+    { name: "Hyatt Regency", desc: "A beachfront resort with stunning South China Sea views.", img: "https://lh3.googleusercontent.com/p/AF1QipNAU7VT1MglFxMByHbKaFKK3K7UZNwtejbO7eTr=s1360-w1360-h1020-rw", address: "Teluk Cempedak, 25050 Kuantan, Pahang.", nearby: ["Teluk Cempedak Beach", "Starbucks TC", "Teruntum Mini Zoo"], map: "https://www.google.com/maps/search/Hyatt+Regency+Kuantan+Resort" },
+    { name: "Cameron Resort", desc: "Classic English colonial-style accommodation.", img: "https://lh3.googleusercontent.com/p/AF1QipPHI2hlLw2csmV7oC_jp1MMea73RXx0jjihP_73=s1360-w1360-h1020-rw", address: "By the Golf Course, 39000 Tanah Rata, Cameron Highlands.", nearby: ["Golf Course", "Jim Thompson Tea Room", "Tanah Rata Night Market"], map: "https://www.google.com/maps/search/Cameron+Highlands+Resort" },
+    { name: "Mangala Resort", desc: "Exclusive villas surrounded by lakes and nature.", img: "https://www.frankyhotels.com/img/Aerial-View_banner_20240103111743649_20251120181154189.jpg", address: "Lebuhraya Tun Razak, 26300 Kuantan, Pahang.", nearby: ["Gambang Water Park", "University Malaysia Pahang", "Pandan Waterfall"], map: "https://www.google.com/maps/search/Mangala+Resort+and+Spa" },
+    { name: "Berjaya Tioman", desc: "Spacious island resort with extensive water sports facilities.", img: "https://lh3.googleusercontent.com/p/AF1QipM2TX4c6MeaZnRWtxhI-1HpMhwQnARLd_L3Y4_r=s1360-w1360-h1020-rw", address: "Kampung Tekek, Tioman Island, Pahang.", nearby: ["Marine Park", "Kampung Tekek Village", "Tioman Airport"], map: "https://www.google.com/maps/search/Berjaya+Tioman+Resort" },
+    { name: "Swiss-Garden", desc: "Popular family resort along the Balok beach stretch.", img: "https://lh3.googleusercontent.com/proxy/-x5sbc5sFPZX4SNkejbvCVzTlKWz1J3TOsElLhm_8QlA3P8hqmu3BleJDf4A-4ST5Ra3HzoXFlJENMAYXLncfMoixsC7znGIm7fKI8ofQfUiQCexNfOW8LDcUqswpRwfWWhHE6rKijdA2ngKR675PZxZsQrw7Q=w574-h384-n-k-rw-no-v1", address: "26080 Balok, Kuantan, Pahang.", nearby: ["Balok Beach", "Natural Batik Village", "Beserah Seafood Hub"], map: "https://www.google.com/maps/search/Swiss-Garden+Beach+Resort+Kuantan" },
+    { name: "Tunaamaya Resort", desc: "Beachfront villas offering absolute tranquility.", img: "https://lh3.googleusercontent.com/p/AF1QipOb1SLW1o9rUvaCteN6V3BAHqTVcaYIkZrJiSJj=s1360-w1360-h1020-rw", address: "Kampung Genting, Tioman Island, Pahang.", nearby: ["Genting Beach", "Monkey Bay", "Asah Waterfall"], map: "https://www.google.com/maps/search/Tunaamaya+Beach+%26+Spa+Resort+Tioman" },
+    { name: "Grand Ion Delemen", desc: "Modern hotel with breathtaking mountain views.", img: "https://lh3.googleusercontent.com/p/AF1QipPY39VARmq_haf_08WMA0G3XCo81V8GWs-P9pal=s1360-w1360-h1020-rw", address: "Jalan Ion Delemen 1, Genting Highlands, 69000 Pahang.", nearby: ["First World Plaza", "SkyAvenue Mall", "Chin Swee Caves Temple"], map: "https://www.google.com/maps/search/Grand+Ion+Delemen+Hotel" },
+    { name: "Century Pines", desc: "Peaceful hotel surrounded by pine trees in Tanah Rata.", img: "https://lh3.googleusercontent.com/p/AF1QipPyFmrzLoCN_RBEjd9JWTtynBA6KMN00ypAyW60=s1360-w1360-h1020-rw", address: "Jalan Masjid, 39000 Tanah Rata, Cameron Highlands.", nearby: ["Tanah Rata Night Market", "Bus Station", "Agro Technology Park"], map: "https://www.google.com/maps/search/Century+Pines+Resort+Cameron" },
+    { name: "Club Med", desc: "All-inclusive resort surrounded by jungle and beach.", img: "https://lh3.googleusercontent.com/p/AF1QipOWRgkT7eR4eEKGHtsOPKPzLCBv6DqwEYYWoDDg=s1360-w1360-h1020-rw", address: "26080 Cherating, Kuantan, Pahang.", nearby: ["Cherating Turtle Sanctuary", "Cherating River Cruise", "Limbong Art Batik"], map: "https://www.google.com/maps/search/Club+Med+Cherating" } 
+];
+
+const attractionSlider = document.getElementById('attractionSlider');
+places.forEach((p, index) => {
+    attractionSlider.innerHTML += `
+        <div class="place-item">
+            <img src="${p.img}" alt="${p.name}" class="place-img">
+            <div class="place-title-main">
+                <span>Explore the beauty of</span>
+                <h2>${p.name.toLowerCase()}</h2>
+            </div>
+            <div class="glass-info">
+                <strong>${p.fact}</strong>
+                <p>Nature at its best</p>
+            </div>
+            <div class="explore-pill" onclick="openPlaceModal(${index})"><span>Explore</span></div>
+        </div>`;
+});
+
+const accSlider = document.getElementById('accSlider');
+recs.forEach((r, index) => {
+    accSlider.innerHTML += `
+        <div class="acc-item" style="background-image: url('${r.img}')" onclick="openAccModal(${index})">
+            <div class="acc-content"><h3>${r.name}</h3><p>${r.desc}</p></div>
+            <div class="nav-btn" onclick="event.stopPropagation(); window.open('${r.map}','_blank')">📍 Navigate</div>
+            <div class="acc-time">Mon - Sun<br>Check-in 3PM</div>
+        </div>`;
+});
+
+function openPlaceModal(index) {
+    const p = places[index];
+    document.getElementById('m-title').innerText = p.name;
+    document.getElementById('m-content').innerHTML = `
+        <p>${p.desc}</p>
+        <span class="sub-title">Key Attractions:</span>
+        <ul>${p.tarikan.map(t => `<li>${t}</li>`).join('')}</ul>
+    `;
+    document.getElementById('modal').style.display = 'flex';
+}
+
+function openAccModal(index) {
+    const r = recs[index];
+    document.getElementById('m-title').innerText = r.name;
+    document.getElementById('m-content').innerHTML = `
+        <p>${r.desc}</p>
+        <span class="sub-title">Address:</span>
+        <p style="font-size:0.8rem;margin-bottom:15px;">${r.address}</p>
+        <span class="sub-title">Nearby:</span>
+        <ul>${r.nearby.map(n => `<li>${n}</li>`).join('')}</ul>
+    `;
+    document.getElementById('modal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+}
+</script>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    <p>© 2026 Explore Pahang</p>
+    <p>Created by Ain | IMD318</p>
+    <p>Last updated: January 2026</p>
+</footer>
+
+</body>
+</html>

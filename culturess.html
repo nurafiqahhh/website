@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pahang | Cultural Heritage</title>
+
+<!-- FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+/* ================= ROOT COLORS ================= */
+:root{
+  --blue:#1e88a8;
+  --green:#4caf50;
+  --bg:#f4f9f9;
+  --dark:#1c1c1c;
+  --white:#ffffff;
+}
+
+/* ================= GLOBAL ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--dark);
+  overflow-x:hidden;
+  padding-bottom:100px; /* for footer space */
+}
+
+/* ================= NAVIGATION ================= */
+.top-bar{
+  padding:30px 40px;
+  display:flex;
+  justify-content:space-between;
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:1000;
+  background:linear-gradient(90deg,var(--blue),var(--green));
+}
+
+.logo{
+  font-weight:600;
+  letter-spacing:2px;
+  color:white;
+  font-family:'Poppins',sans-serif;
+}
+
+.nav-links a{
+  margin-left:30px;
+  text-decoration:none;
+  color:white;
+  font-size:.85rem;
+  opacity:.85;
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  opacity:1;
+}
+
+/* ================= HEADER ================= */
+.culture-header{
+  height:35vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding-top:90px;
+}
+
+.culture-header h1{
+  font-family:'Great Vibes', cursive;
+  font-size:3.5rem;
+  letter-spacing:8px;
+  font-weight:400;
+  text-transform:uppercase;
+  color:var(--blue);
+}
+
+.culture-header p{
+  opacity:.6;
+  letter-spacing:4px;
+  font-size:.7rem;
+  margin-top:8px;
+  font-family:'Poppins',sans-serif;
+  font-weight:300;
+}
+
+/* ================= CONTENT WRAPPER ================= */
+.culture-wrapper{
+  display:flex;
+  flex-direction:column;
+  gap:150px;
+  padding:50px 10%;
+  padding-bottom:200px;
+}
+
+/* ================= CULTURE ITEM ================= */
+.culture-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:relative;
+  text-decoration:none;
+  color:inherit;
+  cursor:pointer;
+}
+
+.culture-item:nth-child(even){
+  flex-direction:row-reverse;
+}
+
+/* ================= IMAGE ================= */
+.culture-img-box{
+  position:relative;
+  width:55%;
+  height:550px;
+  overflow:hidden;
+  border-radius:12px;
+  box-shadow:0 20px 45px rgba(0,0,0,.15);
+}
+
+.culture-img-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 1.8s cubic-bezier(0.19,1,0.22,1);
+}
+
+.culture-item:hover .culture-img-box img{
+  transform:scale(1.12);
+}
+
+/* ================= TEXT ================= */
+.culture-text{
+  width:40%;
+  z-index:2;
+}
+
+.culture-number{
+  font-size:9rem;
+  font-weight:700;
+  line-height:1;
+  margin-bottom:-45px;
+  opacity:.08;
+  color:var(--blue);
+  transition:.6s ease;
+}
+
+.culture-item:hover .culture-number{
+  opacity:.2;
+  transform:translateY(-20px);
+  color:var(--green);
+}
+
+.culture-text h2{
+  font-family:'Great Vibes', cursive;
+  font-size:2.8rem;
+  margin-bottom:25px;
+  color:var(--blue);
+  font-weight:400;
+  position:relative;
+}
+
+.culture-text h2::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-8px;
+  width:0;
+  height:3px;
+  background:var(--green);
+  transition:.6s cubic-bezier(0.19,1,0.22,1);
+}
+
+.culture-item:hover .culture-text h2::after{
+  width:120px;
+}
+
+.culture-text p{
+  font-size:1rem;
+  line-height:1.8;
+  opacity:.85;
+  margin-bottom:35px;
+  font-weight:300;
+  font-family:'Poppins',sans-serif;
+}
+
+/* ================= BUTTON ================= */
+.tiktok-link{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 28px;
+  background:white;
+  border:2px solid var(--blue);
+  border-radius:50px;
+  font-size:.8rem;
+  font-weight:600;
+  letter-spacing:2px;
+  color:var(--blue);
+  font-family:'Poppins',sans-serif;
+  transition:.4s;
+}
+
+.culture-item:hover .tiktok-link{
+  background:linear-gradient(90deg,var(--blue),var(--green));
+  color:white;
+  transform:translateX(15px);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:1000px){
+  .culture-header{
+    height:30vh;
+  }
+
+  .culture-header h1{
+    font-size:2.5rem;
+    letter-spacing:4px;
+  }
+
+  .culture-item,
+  .culture-item:nth-child(even){
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .culture-img-box,
+  .culture-text{
+    width:100%;
+  }
+
+  .culture-img-box{
+    height:400px;
+  }
+
+  .culture-text{
+    margin-top:50px;
+  }
+
+  .culture-number{
+    display:none;
+  }
+
+  .culture-text h2::after{
+    left:50%;
+    transform:translateX(-50%);
+  }
+}
+
+/* ================= FOOTER ================= */
+footer{
+  background: linear-gradient(90deg, var(--blue), var(--green));
+  color: var(--white);
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+footer p{
+  margin:5px 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="top-bar">
+  <div class="logo">PAHANG</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="attractionn.html">Main Attraction</a>
+    <a href="FOODie.html">Traditional Food</a>
+    <a href="culturess.html" style="opacity:1;font-weight:600;border-bottom:2px solid white;">Culture</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header class="culture-header">
+  <p>TIMELESS TRADITION & ROYAL LEGACY</p>
+  <h1>CULTURE</h1>
+</header>
+
+<!-- CONTENT -->
+<div class="culture-wrapper">
+
+  <a href="https://vt.tiktok.com/ZS5suwy3n/" target="_blank" class="culture-item">
+    <div class="culture-img-box">
+      <img src="https://assets.hmetro.com.my/images/articles/pahang-o_HMfield_image_socialmedia.var_1652106431.jpg" alt="Royal Weaving">
+    </div>
+    <div class="culture-text">
+      <div class="culture-number">01</div>
+      <h2>Royal Weaving</h2>
+      <p>An exclusive heritage art produced through meticulous hand-weaving by royal craftsmen.</p>
+      <div class="tiktok-link">Explore on TikTok</div>
+    </div>
+  </a>
+
+  <a href="https://vt.tiktok.com/ZS5sucA5D/" target="_blank" class="culture-item">
+    <div class="culture-img-box">
+      <img src="https://www.shutterstock.com/image-photo/kuching-malaysia-may-14-ethnic-260nw-77391382.jpg" alt="Zapin Pekan">
+    </div>
+    <div class="culture-text">
+      <div class="culture-number">02</div>
+      <h2>Zapin Pekan</h2>
+      <p>A graceful dance reflecting politeness and the warrior spirit of Pekan.</p>
+      <div class="tiktok-link">Explore on TikTok</div>
+    </div>
+  </a>
+
+  <a href="https://vt.tiktok.com/ZS6MvXyUu/" target="_blank" class="culture-item">
+    <div class="culture-img-box">
+      <img src="https://www.sinarharian.com.my/uploads/images/2019/07/23/402430.jpg" alt="Pahang Gamelan">
+    </div>
+    <div class="culture-text">
+      <div class="culture-number">03</div>
+      <h2>Pahang Gamelan</h2>
+      <p>A palace heritage featuring bronze instruments and distinctive melodies.</p>
+      <div class="tiktok-link">Explore on TikTok</div>
+    </div>
+  </a>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Explore Malaysia East Coast</p>
+  <p>Created by Ain | IMD318</p>
+  <p>Last updated: January 2026</p>
+</footer>
+
+</body>
+</html>
